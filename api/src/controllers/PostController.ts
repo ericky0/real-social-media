@@ -80,15 +80,12 @@ class PostController {
     console.log('eae')
     try {
       const currentUser = await User.findById(req.body.userId)
-      console.log(currentUser)
       const userPosts = await Post.find({userId: currentUser?._id})
-      console.log(userPosts)
       const friendPosts = await Promise.all(
         currentUser!.followings.map(async (friendId) => {
           return await Post.find({userId: friendId})
         })
       )
-      console.log(friendPosts)
       res.json(userPosts.concat(...friendPosts))
     } catch (err)  {
       res.status(500).json(err) 

@@ -1,0 +1,105 @@
+.share {
+  width: 100%;
+  height: 170px;
+  border-radius: 10px;
+  -webkit-box-shadow: 0px 0px 16px -8px rgba(0,0,0,0.68);
+  box-shadow: 0px 0px 16px -8px rgba(0,0,0,0.68);
+
+  .shareWrapper {
+    padding: 10px;
+
+    .top {
+
+      display: flex;
+      align-items: center;
+
+      img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-right: 10px;
+      }
+
+      input {
+        border: none;
+        width: 80%;
+      }
+
+      input:focus {
+        outline: none;
+      }
+    }
+
+    hr {
+      margin: 20px;
+    }
+
+    .bottom {
+      display: flex;
+      align-items: center;
+
+      .options {
+        display: flex;
+        margin-left: 20px;
+        width: 100%;
+        gap: 10px;
+
+        .option {
+          display: flex;
+          align-items: center;
+          cursor: pointer;
+          gap: 2px;
+
+          .icon {
+            font-size: 18px;
+            margin-right: 3px;
+          }
+
+          span {
+            font-size: 14px;
+            font-weight: 500;
+          }
+        }
+      }
+
+      button {
+        cursor: pointer;
+        border: none;
+        padding: 7px;
+        border-radius: 5px;
+        background-color: green;
+        color: white;
+        font-weight: 500;
+      }
+    }
+
+  }
+}
+
+@media (max-width: 1052px){
+  .share {
+    .shareWrapper {
+      .bottom {
+        display: flex;
+        flex-wrap: wrap; // Quebra a linha
+        flex-direction: row; //Direção que você deseja
+
+        .options {
+          .option {
+            white-space: nowrap;
+          }
+        }
+        
+        button {
+          margin: 10px auto;
+          width: 40%;
+          background-color: green;
+          color: white;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+
+}
