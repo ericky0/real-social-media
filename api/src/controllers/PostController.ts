@@ -94,7 +94,7 @@ class PostController {
   // ------------------- GET USER'S POSTS ------------------- /
   async getUserPosts(req: Request, res: Response) {
     try {
-      const user = await User.findOne({_id: req.params.userId})
+      const user = await User.findOne({username: req.params.username})
       const posts = await Post.find({userId: user?._id})
       res.status(200).json(posts)
     } catch (err)  {

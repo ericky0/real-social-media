@@ -53,7 +53,12 @@ export default function Rightbar({user}: rightbarType) {
         </div>
         <div>
           <span className="key">Relationship:</span>
-          <span className="value">{user?.relationship}</span>
+          <span className="value">{user?.relationship === 1 
+            ? "Single" 
+            : user?.relationship === 2 
+            ? "Married" 
+            : "-" }
+          </span>
         </div>
       </div>
       <h4>User Friends</h4>

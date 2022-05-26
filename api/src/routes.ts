@@ -33,7 +33,7 @@ router.put("/users/:id/unfollow", usersController.unfollowUser)
 
 router.post("/posts/create", postController.createPost)
 router.get("/posts/timeline/:userId", postController.getTimelinePosts)
-router.get("/posts/profile/:userId", postController.getUserPosts)
+router.get("/posts/profile/:username", postController.getUserPosts)
 router.put("/posts/:id", postController.updatePost)
 router.delete("/posts/:id", postController.deletePost)
 router.put("/posts/:id/like", postController.likePost)

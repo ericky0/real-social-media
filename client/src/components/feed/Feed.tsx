@@ -30,7 +30,7 @@ export default function Feed({username}: feedProps){
       setPosts(res.data)
     }
     fetchPosts()
-  }, [])
+  }, [username])
   return (
     <div className="feed">
       <div className="feedWrapper">
