@@ -32,8 +32,7 @@ router.put("/users/:id/unfollow", usersController.unfollowUser)
 // ------------------- POST-CONTROLLER ------------------- /
 
 router.post("/posts/create", postController.createPost)
-router.get("/posts/timeline", postController.getTimelinePosts)
-
+router.get("/posts/timeline/:userId", postController.getTimelinePosts)
 router.put("/posts/:id", postController.updatePost)
 router.delete("/posts/:id", postController.deletePost)
 router.put("/posts/:id/like", postController.likePost)

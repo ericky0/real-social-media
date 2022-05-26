@@ -1,23 +1,42 @@
 import "./post.scss"
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { Users } from '../../dummyData'
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import api from "../../services/api";
+import { format } from 'timeago.js'
+import { Link } from "react-router-dom";
 
 type postProp = {
   desc?: string;
   photo?: string;
-  date: string;
-  userId: number;
-  like: number;
+  date: Date;
+  userId: string;
+  like: [];
   comment: number;
+}
+
+type IUser = {
+  profilePicture?: string;
+  username: string;
 }
 
 export default function Post({desc, photo, date, userId, like, comment}: postProp) {
   
-  const [likeCount, setLikeCount] = useState(like)
+  const [user, setUser] = useState<IUser>()
+  useEffect(() => {
+    const fetchUser = async () => {
+      const res = await api.get(`users/${userId}`) 
+      setUser(res.data)
+    }
+    fetchUser()
+  }, [userId])
+
+  const PF = process.env.REACT_APP_PUBLIC_FOLDER
+
+  const [likeCount, setLikeCount] = useState(like.length)
   const [isLiked, setIsLiked] = useState(false)
 
   const likeHandler = () => {
+    //@ts-expect-error
     setLikeCount(!isLiked ? likeCount + 1 : likeCount - 1)
     setIsLiked(!isLiked)
   }
@@ -28,9 +47,11 @@ export default function Post({desc, photo, date, userId, like, comment}: postPro
       <div className="postWrapper">
         <div className="top">
           <div className="topLeft">
-            <img src={Users.filter((u) => u.id === userId)[0].profilePicture} alt="person" />
-            <span className="username">{Users.filter((u) => u.id === userId)[0].username}</span>
-            <span className="date">{date}</span>
+            <Link to={`profile/${user?.username}`} > 
+              <img src={user?.profilePicture ? PF + user?.profilePicture : PF! + 'person/noAvatar.png'} alt="person" />
+            </Link>
+            <span className="username">{user?.username}</span>
+            <span className="date">{format(date)}</span>
           </div>
           <div className="topRight">
             <MoreVertIcon />
@@ -40,12 +61,12 @@ export default function Post({desc, photo, date, userId, like, comment}: postPro
           <span>
             {desc}
           </span>
-          <img src={photo} alt="post" />
+          <img src={PF! + photo} alt="post" />
         </div>
         <div className="bottom">
           <div className="bottomLeft">
-            <img src="/assets/like.png" onClick={likeHandler} alt="like"/>
-            <img src="/assets/heart.png" onClick={likeHandler} alt="heart" />
+            <img src={`${PF}like.png` } onClick={likeHandler} alt="like"/>
+            <img src={`${PF}heart.png` } onClick={likeHandler} alt="heart" />
             <span>{likeCount} people liked it</span>
           </div>
           <div className="bottomRight">

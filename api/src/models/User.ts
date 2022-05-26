@@ -6,11 +6,15 @@ interface IUser extends Document {
   username: string;
   email: string;
   password: string;
-  profilePicture: string;
-  coverPicture: string;
+  profilePicture?: string;
+  coverPicture?: string;
   followers: IUser[];
   followings: IUser[];
-  isAdmin: boolean;
+  isAdmin?: boolean;
+  desc?: string;
+  from?: string;
+  city?: string;
+  relationship?: number;
 }
 
 const UserSchema: Schema = new Schema({
@@ -62,21 +66,25 @@ const UserSchema: Schema = new Schema({
 
   desc: {
     type: String,
+    default: "",
     max: 50
   },
 
   city: {
     type: String,
+    default: "",
     max: 50
   },
 
   from: {
     type: String,
+    default: "",
     max: 50
   },
 
   relationship: {
     type: Number,
+    default: 1,
     enum: [1, 2, 3]
   }
 

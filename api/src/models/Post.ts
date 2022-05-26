@@ -7,6 +7,7 @@ interface IPost extends Document {
   desc: string;
   img: string;
   likes: any[];
+  comments: number;
 }
 
 const PostSchema: Schema = new Schema({
@@ -28,6 +29,11 @@ const PostSchema: Schema = new Schema({
     type: Array,
     default: []
   }, 
+
+  comments: {
+    type: Number,
+    default: 0
+  }
 },
   { timestamps: true }
 )

@@ -8,11 +8,13 @@ type rightbarType = {
 
 export default function Rightbar({profile = false}: rightbarType) {
   
+  const PF = process.env.REACT_APP_PUBLIC_FOLDER
+
   const HomeRightbar = () => {
     return (
       <>
         <div className="homeRightbar">
-          <img src="/assets/gift.png" alt="birthday" />
+          <img src={`${PF}gift.png`} alt="birthday" />
           <span><b>Augusto Soares</b> and <b>6 other friends</b> and  have a birthday today</span>
         </div>
         <img src="/assets/ad.png" alt="ad" />
@@ -51,32 +53,31 @@ export default function Rightbar({profile = false}: rightbarType) {
       <h4>User Friends</h4>
       <div className="followings">
         <div>
-          <img src="/assets/person/1.jpeg" alt="profile" />
+          <img src={`${PF}person/1.jpeg`} alt="profile" />
           <span>John Carter</span>
         </div>
         <div>
-          <img src="/assets/person/2.jpeg" alt="profile" />
+          <img src={`${PF}person/2.jpeg`} alt="profile" />
           <span>John Carter</span>
         </div>
         <div>
-          <img src="/assets/person/3.jpeg" alt="profile" />
+          <img src={`${PF}person/3.jpeg`} alt="profile" />
           <span>John Carter</span>
         </div>
         <div>
-          <img src="/assets/person/4.jpeg" alt="profile" />
+          <img src={`${PF}person/4.jpeg`} alt="profile" />
           <span>John Carter</span>
         </div>
         <div>
-          <img src="/assets/person/5.jpeg" alt="profile" />
+          <img src={`${PF}person/5.jpeg`} alt="profile" />
           <span>John Carter</span>
         </div>
         <div>
-          <img src="/assets/person/6.jpeg" alt="profile" />
+          <img src={`${PF}person/6.jpeg`} alt="profile" />
           <span>John Carter</span>
         </div>
       </div>
       </div>
-
     )
   }
   

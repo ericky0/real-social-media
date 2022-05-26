@@ -7,6 +7,9 @@ import './profile.scss'
 
 
 export default function Profile() {
+
+  const PF = process.env.REACT_APP_PUBLIC_FOLDER
+
   return (
     <> 
       <Topbar/>
@@ -15,8 +18,8 @@ export default function Profile() {
         <div className="profileRight">
           <div className="rightTop">
             <div className="cover">
-              <img className="coverImg" src="/assets/post/3.jpeg" alt="cover" />
-              <img className="userImg" src="/assets/person/4.jpeg" alt="user"/>
+              <img className="coverImg" src={`${PF}post/3.jpeg`} alt="cover" />
+              <img className="userImg" src={`${PF}person/4.jpeg`} alt="user"/>
             </div>
             <div className="info">
               <h4>Erick Hogarth</h4>
@@ -24,7 +27,7 @@ export default function Profile() {
             </div>
           </div>
           <div className="rightBottom">
-            <Feed />
+            <Feed username="john"/>
             <Rightbar profile/>
           </div>
         </div>
