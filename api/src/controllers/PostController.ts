@@ -77,7 +77,6 @@ class PostController {
 
   // ------------------- GET TIMELINE POSTS ------------------- /
   async getTimelinePosts(req: Request, res: Response) {
-    console.log('eae')
     try {
       const currentUser = await User.findById(req.params.userId)
       const userPosts = await Post.find({userId: currentUser?._id})
@@ -87,6 +86,17 @@ class PostController {
         })
       )
       res.status(200).json(userPosts.concat(...friendPosts))
+    } catch (err)  {
+      res.status(500).json(err) 
+    }
+  }
+
+  // ------------------- GET USER'S POSTS ------------------- /
+  async getUserPosts(req: Request, res: Response) {
+    try {
+      const user = await User.findOne({_id: req.params.userId})
+      const posts = await Post.find({userId: user?._id})
+      res.status(200).json(posts)
     } catch (err)  {
       res.status(500).json(err) 
     }

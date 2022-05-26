@@ -49,9 +49,12 @@ class UsersController {
 
   // ------------------- GET USER ------------------- /
   async getUser(req: Request, res: Response) {
+    const userid = req.query.userid
+    const username = req.query.username
     try {
-      const user = await User.findById(req.params.id)
-
+      const user = userid ? 
+      await User.findById(userid): 
+      await User.findOne({username: username})
       // _doc doesn't exists in IUser but it exists in mongoose.Document, thats why we expect a error from typescript there
       //@ts-expect-error
       const { password, updatedAt, ...other } = user._doc

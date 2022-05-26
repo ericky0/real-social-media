@@ -2,11 +2,17 @@ import './rightbar.scss'
 import { Users } from '../../dummyData'
 import Online from '../online/Online'
 
-type rightbarType = {
-  profile?: boolean;
+type IUser = {
+  city: string;
+  from: string;
+  relationship: number;
 }
 
-export default function Rightbar({profile = false}: rightbarType) {
+type rightbarType = {
+  user?: IUser;
+}
+
+export default function Rightbar({user}: rightbarType) {
   
   const PF = process.env.REACT_APP_PUBLIC_FOLDER
 
@@ -39,15 +45,15 @@ export default function Rightbar({profile = false}: rightbarType) {
       <div className="info">
         <div>
           <span className="key">City:</span>
-          <span className="value">New York</span>
+          <span className="value">{user?.city}</span>
         </div>
         <div>
           <span className="key">From:</span>
-          <span className="value">Madrid</span>
+          <span className="value">{user?.from}</span>
         </div>
         <div>
           <span className="key">Relationship:</span>
-          <span className="value">Single</span>
+          <span className="value">{user?.relationship}</span>
         </div>
       </div>
       <h4>User Friends</h4>
@@ -84,7 +90,7 @@ export default function Rightbar({profile = false}: rightbarType) {
   return (
     <div className="rightbar">
       <div className="rightbarWrapper">
-        {profile ? <ProfileRightbar/> : <HomeRightbar />}
+        {user ? <ProfileRightbar/> : <HomeRightbar />}
       </div>
     </div>
   )

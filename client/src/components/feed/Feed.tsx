@@ -16,7 +16,7 @@ type IPost = {
 }
 
 type feedProps = { 
-  username: string;
+  username?: string;
 }
 
 export default function Feed({username}: feedProps){
@@ -24,7 +24,9 @@ export default function Feed({username}: feedProps){
   const [posts, setPosts] = useState<IPost[]>([])
   useEffect(() => {
     const fetchPosts = async () => {
-      const res = await api.get('posts/timeline/628f5b558e201698bce8a067')
+      const res = username
+      ? await api.get('posts/profile/' + username)
+      : await api.get('posts/timeline/628f5b558e201698bce8a067')
       setPosts(res.data)
     }
     fetchPosts()

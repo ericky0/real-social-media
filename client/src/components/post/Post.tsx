@@ -24,7 +24,7 @@ export default function Post({desc, photo, date, userId, like, comment}: postPro
   const [user, setUser] = useState<IUser>()
   useEffect(() => {
     const fetchUser = async () => {
-      const res = await api.get(`users/${userId}`) 
+      const res = await api.get(`users?userid=${userId}`) 
       setUser(res.data)
     }
     fetchUser()
