@@ -1,6 +1,15 @@
+import { FormEvent } from 'react'
+import { useNavigate } from 'react-router-dom'
+
 import './register.scss'
 
 export default function Register() {
+  const navigate = useNavigate()
+
+  const goToLogin = (event: FormEvent) => {
+    navigate('/login')
+  }
+
   return (
     <div className="login">
       <div className="loginWrapper">
@@ -15,7 +24,7 @@ export default function Register() {
             <input type="password" placeholder='Password'/>
             <input type="password" placeholder='Password Again'/>
             <button className="loginButton">Sign Up</button>
-            <button className="registerButton">Log into your account</button>
+            <button className="registerButton" onClick={goToLogin}>Log into your account</button>
           </div>
         </div>
       </div>

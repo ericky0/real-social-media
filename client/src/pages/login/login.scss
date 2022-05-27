@@ -34,7 +34,12 @@
 
     .right {
       // background-color: red;
-      > div {
+
+      .loading {
+        color: white;
+      }
+
+      > form {
         height: 300px;
         padding: 20px;
         background-color: white;
@@ -53,6 +58,10 @@
 
         input:focus {
           outline: none;
+        }
+
+        button.loginButton:disabled, button.registerButton:disabled {
+          cursor: not-allowed;
         }
 
         button.loginButton {
