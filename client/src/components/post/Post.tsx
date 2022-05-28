@@ -1,16 +1,27 @@
 import "./post.scss"
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import api from "../../services/api";
 import { format } from 'timeago.js'
 import { Link } from "react-router-dom";
 
 import { Post as PostType } from '../../types/Post'
 import { User } from "../../types/User";
+import { AuthContext } from "../../context/AuthContext";
 
-export default function Post({desc, img, createdAt, userId, likes, comments}: PostType) {
+export default function Post({desc, img, createdAt, userId, likes, comments, _id}: PostType) {
   
   const [user, setUser] = useState<User>()
+  const PF = process.env.REACT_APP_PUBLIC_FOLDER
+  const [likeCount, setLikeCount] = useState(likes?.length!)
+  const [isLiked, setIsLiked] = useState(false)
+  const { user: currentUser } = useContext(AuthContext)
+
+
+  useEffect(() => {
+    setIsLiked(likes!.includes(currentUser._id));
+  }, [currentUser._id, likes])
+
   useEffect(() => {
     const fetchUser = async () => {
       const res = await api.get(`users?userid=${userId}`) 
@@ -19,12 +30,13 @@ export default function Post({desc, img, createdAt, userId, likes, comments}: Po
     fetchUser()
   }, [userId])
 
-  const PF = process.env.REACT_APP_PUBLIC_FOLDER
 
-  const [likeCount, setLikeCount] = useState(likes?.length!)
-  const [isLiked, setIsLiked] = useState(false)
-
-  const likeHandler = () => {
+  const likeHandler = async () => {
+    try {
+      await api.put(`/posts/${_id}/like`, {userId: currentUser._id})
+    } catch (err) {
+      
+    }
     setLikeCount(!isLiked ? likeCount! + 1 : likeCount! - 1)
     setIsLiked(!isLiked)
   }
