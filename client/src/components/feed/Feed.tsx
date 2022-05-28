@@ -4,24 +4,11 @@ import Share from '../share/Share'
 import api from '../../services/api'
 
 import './feed.scss'
+import { User } from '../../types/User'
+import { Post as PostType } from '../../types/Post'
 
-type IPost = {
-  comments: number;
-  createdAt: Date;
-  desc: string;
-  _id: string;
-  likes: [];
-  userId: string;
-  img: string;
-}
-
-type feedProps = { 
-  username?: string;
-}
-
-export default function Feed({username}: feedProps){
-  
-  const [posts, setPosts] = useState<IPost[]>([])
+export default function Feed({username}: User){
+  const [posts, setPosts] = useState<PostType[]>([])
   useEffect(() => {
     const fetchPosts = async () => {
       const res = username
@@ -38,12 +25,12 @@ export default function Feed({username}: feedProps){
         {posts.map((p)=>(
           <Post 
             key={p._id}
-            comment={p.comments}
-            date={p.createdAt}
-            like={p.likes}
+            comments={p.comments}
+            createdAt={p.createdAt}
+            likes={p.likes}
             userId={p.userId}
             desc={p.desc}
-            photo={p.img}
+            img={p.img}
           />
         ))}
 

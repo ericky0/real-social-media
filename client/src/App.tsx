@@ -19,8 +19,8 @@ function App() {
       <Routes>
         <Route path="/" element={ 
           user // there's a user?
-          ? <Home /> 
-          : <Register />
+          ? <Register />
+          : <Home /> 
         }/>
         <Route path="/login" element={
           user // there's a user?

@@ -1,11 +1,7 @@
+import { User } from "../../types/User"
 import "./closeFriend.scss"
 
-type closeFriendProp = {
-  profilePicture?: string;
-  username: string;
-}
-
-export default function CloseFriend({profilePicture, username}: closeFriendProp) {
+export default function CloseFriend({profilePicture, username}: User) {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER
   
   return (

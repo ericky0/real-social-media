@@ -4,11 +4,16 @@ import PersonIcon from '@mui/icons-material/Person';
 import ChatIcon from '@mui/icons-material/Chat';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { Link } from 'react-router-dom';
-
+import { AuthContext } from '../../context/AuthContext';
+import { useContext } from 'react';
 
 
 
 export default function Topbar() {
+
+  const { user }  = useContext(AuthContext)
+  const PF = process.env.REACT_APP_PUBLIC_FOLDER
+
   return (
     <div className="topbar">
 
@@ -47,9 +52,7 @@ export default function Topbar() {
             <span>1</span>
           </div>
         </div>
-
-        <img src="/assets/person/1.jpeg" alt="profilePicture"/>
-
+        {/* <img src={PF + user?.profilePicture} alt="profilePicture"/> */}
       </div>
     </div>
   )

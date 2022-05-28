@@ -1,11 +1,7 @@
+import { User } from "../../types/User"
 import "./online.scss"
 
-type onlineProp = {
-  profilePicture?: string;
-  username: string;
-}
-
-export default function Online({profilePicture, username}: onlineProp) {
+export default function Online({profilePicture, username}: User) {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER
   
   return (

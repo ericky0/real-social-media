@@ -5,23 +5,12 @@ import api from "../../services/api";
 import { format } from 'timeago.js'
 import { Link } from "react-router-dom";
 
-type postProp = {
-  desc?: string;
-  photo?: string;
-  date: Date;
-  userId: string;
-  like: [];
-  comment: number;
-}
+import { Post as PostType } from '../../types/Post'
+import { User } from "../../types/User";
 
-type IUser = {
-  profilePicture?: string;
-  username: string;
-}
-
-export default function Post({desc, photo, date, userId, like, comment}: postProp) {
+export default function Post({desc, img, createdAt, userId, likes, comments}: PostType) {
   
-  const [user, setUser] = useState<IUser>()
+  const [user, setUser] = useState<User>()
   useEffect(() => {
     const fetchUser = async () => {
       const res = await api.get(`users?userid=${userId}`) 
@@ -32,12 +21,11 @@ export default function Post({desc, photo, date, userId, like, comment}: postPro
 
   const PF = process.env.REACT_APP_PUBLIC_FOLDER
 
-  const [likeCount, setLikeCount] = useState(like.length)
+  const [likeCount, setLikeCount] = useState(likes?.length!)
   const [isLiked, setIsLiked] = useState(false)
 
   const likeHandler = () => {
-    //@ts-expect-error
-    setLikeCount(!isLiked ? likeCount + 1 : likeCount - 1)
+    setLikeCount(!isLiked ? likeCount! + 1 : likeCount! - 1)
     setIsLiked(!isLiked)
   }
 
@@ -51,7 +39,7 @@ export default function Post({desc, photo, date, userId, like, comment}: postPro
               <img src={user?.profilePicture ? PF + user?.profilePicture : PF! + 'person/noAvatar.png'} alt="person" />
             </Link>
             <span className="username">{user?.username}</span>
-            <span className="date">{format(date)}</span>
+            <span className="date">{format(createdAt!)}</span>
           </div>
           <div className="topRight">
             <MoreVertIcon />
@@ -61,7 +49,7 @@ export default function Post({desc, photo, date, userId, like, comment}: postPro
           <span>
             {desc}
           </span>
-          <img src={PF! + photo} alt="post" />
+          <img src={PF! + img} alt="post" />
         </div>
         <div className="bottom">
           <div className="bottomLeft">
@@ -70,7 +58,7 @@ export default function Post({desc, photo, date, userId, like, comment}: postPro
             <span>{likeCount} people liked it</span>
           </div>
           <div className="bottomRight">
-            <span>{comment} comments</span>
+            <span>{comments} comments</span>
           </div>
         </div>
       </div>

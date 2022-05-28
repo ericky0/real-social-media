@@ -8,23 +8,13 @@ import api from "../../services/api";
 import { useParams } from "react-router"
 
 import './profile.scss'
-
-type IUser = {
-  _id: string;
-  username: string;
-  desc?: string;
-  city: string;
-  from: string;
-  relationship: number;
-  coverPicture: string;
-  profilePicture: string;
-}
+import { User } from "../../types/User";
 
 export default function Profile() {
 
   const PF = process.env.REACT_APP_PUBLIC_FOLDER
 
-  const [user, setUser] = useState<IUser>()
+  const [user, setUser] = useState<User>()
   const username = useParams().username
 
 

@@ -1,15 +1,11 @@
 import './rightbar.scss'
 import { Users } from '../../dummyData'
 import Online from '../online/Online'
+import { User } from '../../types/User';
 
-type IUser = {
-  city: string;
-  from: string;
-  relationship: number;
-}
 
 type rightbarType = {
-  user?: IUser;
+  user?: User;
 }
 
 export default function Rightbar({user}: rightbarType) {
