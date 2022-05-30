@@ -63,27 +63,8 @@ export default function Rightbar({user}: rightbarType) {
           <img src={`${PF}person/1.jpeg`}  crossOrigin="" alt="profile" />
           <span>John Carter</span>
         </div>
-        <div>
-          <img src={`${PF}person/2.jpeg`}  crossOrigin="" alt="profile" />
-          <span>John Carter</span>
-        </div>
-        <div>
-          <img src={`${PF}person/3.jpeg`} crossOrigin="" alt="profile" />
-          <span>John Carter</span>
-        </div>
-        <div>
-          <img src={`${PF}person/4.jpeg`} crossOrigin="" alt="profile" />
-          <span>John Carter</span>
-        </div>
-        <div>
-          <img src={`${PF}person/5.jpeg`} crossOrigin="" alt="profile" />
-          <span>John Carter</span>
-        </div>
-        <div>
-          <img src={`${PF}person/6.jpeg`} crossOrigin="" alt="profile" />
-          <span>John Carter</span>
-        </div>
       </div>
+      
       </div>
     )
   }

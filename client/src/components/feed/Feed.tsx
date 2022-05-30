@@ -2,7 +2,6 @@ import { useContext, useEffect, useState } from 'react'
 import Post from '../post/Post'
 import Share from '../share/Share'
 import api from '../../services/api'
-
 import './feed.scss'
 import { User } from '../../types/User'
 import { Post as PostType } from '../../types/Post'
@@ -16,7 +15,12 @@ export default function Feed({username}: User){
       const res = username
       ? await api.get('posts/profile/' + username)
       : await api.get('posts/timeline/' + user._id)
-      setPosts(res.data)
+      setPosts(res.data.sort((p1: PostType, p2: PostType) => {
+        const date1 = new Date(p2.createdAt!)
+        const date2 = new Date(p1.createdAt!)
+        
+        return date1.getTime() - date2.getTime()
+      }))
     }
     fetchPosts()
   }, [username, user._id])

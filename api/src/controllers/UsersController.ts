@@ -2,6 +2,12 @@ import { User } from '../models/User'
 import { Request, Response } from 'express'
 import bcrypt from 'bcrypt'
 
+interface IFriend {
+  _id?: string
+  username?: string
+  profilePicture?: string
+}
+
 class UsersController {
   // ------------------- UPDATE USER ------------------- /
   async updateUser(req: Request, res: Response) {
@@ -56,6 +62,27 @@ class UsersController {
       //@ts-expect-error
       const { password, updatedAt, ...other } = user._doc
       res.status(200).json(other)
+    } catch (err) {
+      res.status(500).json(err)
+    }
+  }
+
+  // ------------------- GET FRIENDS ------------------- /
+
+  async getFriends(req: Request, res: Response) {
+    try {
+      const user = await User.findById(req.params.userId)
+      const friends = await Promise.all(
+        user!.followings.map(async friendId => {
+          return await User.findById(friendId)
+        })
+      )
+      let friendList = <IFriend[]>[]
+      friends.map(friend => {
+        const { _id, username, profilePicture }: any = friend
+        friendList.push({ _id, username, profilePicture })
+      })
+      res.status(200).json(friendList)
     } catch (err) {
       res.status(500).json(err)
     }

@@ -24,6 +24,7 @@ router.post('/auth/login', authController.authenticateUser)
 router.put('/users/:id', usersController.updateUser)
 router.delete('/users/:id', usersController.deleteUser)
 router.get('/users/', usersController.getUser)
+router.get('/users/friends/:userId', usersController.getFriends)
 router.put('/users/:id/follow', usersController.followUser)
 router.put('/users/:id/unfollow', usersController.unfollowUser)
 
