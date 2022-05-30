@@ -44,7 +44,7 @@ router.get('/posts/:id', postController.getPost)
 // multer
 router.post('/upload', upload.single('file'), (req: Request, res: Response) => {
   try {
-    return res.status(200).json('File upload successfully')
+    return res.status(200).json(res.req.file?.filename)
   } catch (err) {
     console.log(err)
   }

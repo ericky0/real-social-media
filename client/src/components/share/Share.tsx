@@ -24,18 +24,18 @@ export default function Share() {
     }
     if(file) {
       const data = new FormData();
-      const fileName = Date.now() + file.name
       data.append("file", file)
-      data.append("name", fileName)
-      newPost.img = fileName
+      data.append("name", file.name)
       try {
-        await api.post("/upload", data)
+        const res = await api.post("/upload", data)
+        newPost.img = res.data
       } catch (err) {
         console.log(err)
       }
     }
     try {
       await api.post("/posts/create", newPost)
+      window.location.reload()
     } catch (err) {
       console.log(err)
     }
