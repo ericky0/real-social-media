@@ -35,8 +35,8 @@ export default function Profile() {
         <div className="profileRight">
           <div className="rightTop">
             <div className="cover">
-              <img className="coverImg" src={user?.coverPicture ? PF + user?.coverPicture : PF! + 'noCover.jpg'} alt="cover" />
-              <img className="userImg" src={user?.profilePicture ? PF + user?.profilePicture : PF! + 'person/noAvatar.png'} alt="user"/>
+              <img className="coverImg" crossOrigin="" src={user?.coverPicture ? PF + user?.coverPicture : PF! + 'noCover.jpg'} alt="cover" />
+              <img className="userImg" crossOrigin="" src={user?.profilePicture ? PF + user?.profilePicture : PF! + 'person/noAvatar.png'} alt="user"/>
             </div>
             <div className="info">
               <h4>{user?.username}</h4>

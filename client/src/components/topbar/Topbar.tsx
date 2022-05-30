@@ -58,7 +58,8 @@ export default function Topbar() {
             user?.profilePicture 
               ? PF + user?.profilePicture 
               : PF + "person/noAvatar.png"
-            } 
+            }  
+            crossOrigin=""
             alt="profilePicture"/>
         </Link>
       </div>

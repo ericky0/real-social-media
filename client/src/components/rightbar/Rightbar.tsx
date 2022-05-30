@@ -16,10 +16,10 @@ export default function Rightbar({user}: rightbarType) {
     return (
       <>
         <div className="homeRightbar">
-          <img src={`${PF}gift.png`} alt="birthday" />
+          <img src={`${PF}gift.png`} crossOrigin="" alt="birthday" />
           <span><b>Augusto Soares</b> and <b>6 other friends</b> and  have a birthday today</span>
         </div>
-        <img src="/assets/ad.png" alt="ad" />
+        <img src="/assets/ad.png" crossOrigin="" alt="ad" />
         <h4>Online Friends</h4>
         <ul>
           {Users.map((u) => (
@@ -60,27 +60,27 @@ export default function Rightbar({user}: rightbarType) {
       <h4>User Friends</h4>
       <div className="followings">
         <div>
-          <img src={`${PF}person/1.jpeg`} alt="profile" />
+          <img src={`${PF}person/1.jpeg`}  crossOrigin="" alt="profile" />
           <span>John Carter</span>
         </div>
         <div>
-          <img src={`${PF}person/2.jpeg`} alt="profile" />
+          <img src={`${PF}person/2.jpeg`}  crossOrigin="" alt="profile" />
           <span>John Carter</span>
         </div>
         <div>
-          <img src={`${PF}person/3.jpeg`} alt="profile" />
+          <img src={`${PF}person/3.jpeg`} crossOrigin="" alt="profile" />
           <span>John Carter</span>
         </div>
         <div>
-          <img src={`${PF}person/4.jpeg`} alt="profile" />
+          <img src={`${PF}person/4.jpeg`} crossOrigin="" alt="profile" />
           <span>John Carter</span>
         </div>
         <div>
-          <img src={`${PF}person/5.jpeg`} alt="profile" />
+          <img src={`${PF}person/5.jpeg`} crossOrigin="" alt="profile" />
           <span>John Carter</span>
         </div>
         <div>
-          <img src={`${PF}person/6.jpeg`} alt="profile" />
+          <img src={`${PF}person/6.jpeg`} crossOrigin="" alt="profile" />
           <span>John Carter</span>
         </div>
       </div>

@@ -16,15 +16,14 @@ class PostController {
 
   // ------------------- UPDATE A POST ------------------- /
   async updatePost(req: Request, res: Response) {
-    
-    try { 
+    try {
       const post = await Post.findById(req.params.id)
 
-      if(post?.userId === req.body.userId) {
-        await post?.updateOne({$set: req.body})
-        res.status(200).json("Post updated successfully")
+      if (post?.userId === req.body.userId) {
+        await post?.updateOne({ $set: req.body })
+        res.status(200).json('Post updated successfully')
       } else {
-        res.status(403).json("You can only update your posts")
+        res.status(403).json('You can only update your posts')
       }
     } catch (err) {
       res.status(500).json(err)
@@ -33,15 +32,14 @@ class PostController {
 
   // ------------------- DELETE A POST ------------------- /
   async deletePost(req: Request, res: Response) {
-    
-    try { 
+    try {
       const post = await Post.findById(req.params.id)
 
-      if(post?.userId === req.body.userId) {
+      if (post?.userId === req.body.userId) {
         await post?.deleteOne()
-        res.status(200).json("Post deleted successfully")
+        res.status(200).json('Post deleted successfully')
       } else {
-        res.status(403).json("You can only delete your posts")
+        res.status(403).json('You can only delete your posts')
       }
     } catch (err) {
       res.status(500).json(err)
@@ -52,13 +50,12 @@ class PostController {
   async likePost(req: Request, res: Response) {
     try {
       const post = await Post.findById(req.params.id)
-      if(!post?.likes.includes(req.body.userId)){
-        await post?.updateOne({$push: {likes: req.body.userId}})
-        res.status(200).json("the post has been liked")
+      if (!post?.likes.includes(req.body.userId)) {
+        await post?.updateOne({ $push: { likes: req.body.userId } })
+        res.status(200).json('the post has been liked')
       } else {
-        await post?.updateOne({$pull: {likes: req.body.userId}})
-        res.status(200).json("the post has been disliked")
-
+        await post?.updateOne({ $pull: { likes: req.body.userId } })
+        res.status(200).json('the post has been disliked')
       }
     } catch (err) {
       res.status(500).json(err)
@@ -71,7 +68,7 @@ class PostController {
       const post = await Post.findById(req.params.id)
       res.status(200).json(post)
     } catch (err) {
-      res.status(500).json(err)     
+      res.status(500).json(err)
     }
   }
 
@@ -79,29 +76,28 @@ class PostController {
   async getTimelinePosts(req: Request, res: Response) {
     try {
       const currentUser = await User.findById(req.params.userId)
-      const userPosts = await Post.find({userId: currentUser?._id})
+      const userPosts = await Post.find({ userId: currentUser?._id })
       const friendPosts = await Promise.all(
-        currentUser!.followings.map(async (friendId) => {
-          return await Post.find({userId: friendId})
+        currentUser!.followings.map(async friendId => {
+          return await Post.find({ userId: friendId })
         })
       )
       res.status(200).json(userPosts.concat(...friendPosts))
-    } catch (err)  {
-      res.status(500).json(err) 
+    } catch (err) {
+      res.status(500).json(err)
     }
   }
 
   // ------------------- GET USER'S POSTS ------------------- /
   async getUserPosts(req: Request, res: Response) {
     try {
-      const user = await User.findOne({username: req.params.username})
-      const posts = await Post.find({userId: user?._id})
+      const user = await User.findOne({ username: req.params.username })
+      const posts = await Post.find({ userId: user?._id })
       res.status(200).json(posts)
-    } catch (err)  {
-      res.status(500).json(err) 
+    } catch (err) {
+      res.status(500).json(err)
     }
   }
-
 }
 
-export {PostController}
+export { PostController }

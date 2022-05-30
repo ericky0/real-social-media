@@ -48,7 +48,7 @@ export default function Post({desc, img, createdAt, userId, likes, comments, _id
         <div className="top">
           <div className="topLeft">
             <Link to={`profile/${user?.username}`} > 
-              <img src={user?.profilePicture ? PF + user?.profilePicture : PF! + 'person/noAvatar.png'} alt="person" />
+              <img src={user?.profilePicture ? PF + user?.profilePicture : PF! + 'person/noAvatar.png'} crossOrigin="" alt="person" />
             </Link>
             <span className="username">{user?.username}</span>
             <span className="date">{format(createdAt!)}</span>
@@ -61,12 +61,12 @@ export default function Post({desc, img, createdAt, userId, likes, comments, _id
           <span>
             {desc}
           </span>
-          <img src={PF! + img} alt="post" />
+          <img src={PF! + img} crossOrigin="" alt="post" />
         </div>
         <div className="bottom">
           <div className="bottomLeft">
-            <img src={`${PF}like.png` } onClick={likeHandler} alt="like"/>
-            <img src={`${PF}heart.png` } onClick={likeHandler} alt="heart" />
+            <img src={`${PF}like.png` } crossOrigin="" onClick={likeHandler} alt="like"/>
+            <img src={`${PF}heart.png` } crossOrigin="" onClick={likeHandler} alt="heart" />
             <span>{likeCount} people liked it</span>
           </div>
           <div className="bottomRight">

@@ -7,7 +7,7 @@ export default function Online({profilePicture, username}: User) {
   return (
     <li>
       <div>
-        <img src={PF! + profilePicture} alt="profile" />
+        <img src={PF! + profilePicture} crossOrigin=""alt="profile" />
         <span></span>
       </div>
       <span>{username}</span>

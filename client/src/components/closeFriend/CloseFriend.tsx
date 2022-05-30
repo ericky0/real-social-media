@@ -6,7 +6,7 @@ export default function CloseFriend({profilePicture, username}: User) {
   
   return (
     <li>
-      <img src={PF! + profilePicture} alt="profile" />
+      <img src={PF! + profilePicture}  crossOrigin="" alt="profile" />
       <span>{username}</span>
     </li>
   )
