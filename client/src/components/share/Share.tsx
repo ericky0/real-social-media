@@ -6,6 +6,7 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import EmojiEmotionsIcon from '@mui/icons-material/EmojiEmotions';
 import { AuthContext } from '../../context/AuthContext';
 import { FormEvent, useContext, useRef, useState } from 'react';
+import CancelIcon from '@mui/icons-material/Cancel';
 import { Post } from '../../types/Post';
 import api from '../../services/api';
 
@@ -14,7 +15,7 @@ export default function Share() {
   const { user } = useContext(AuthContext)
   const PF = process.env.REACT_APP_PUBLIC_FOLDER
   const desc = useRef<HTMLInputElement>(null)
-  const [file, setFile] = useState<File>()
+  const [file, setFile] = useState<File | null>()
 
   const submitHandler = async (event: FormEvent) => {
     event.preventDefault()
@@ -54,6 +55,12 @@ export default function Share() {
           />
         </div>
         <hr />
+        {file && (
+          <div className="imgContainer">
+            <img src={URL.createObjectURL(file)} alt="preview"/>
+            <CancelIcon className="cancelImg" onClick={() => setFile(null)}/>
+          </div>
+        )}
         <form className="bottom" onSubmit={submitHandler}>
           <div className="options">
 
