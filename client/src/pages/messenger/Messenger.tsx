@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react'
+import { FormEvent, useContext, useEffect, useRef, useState } from 'react'
 import ChatOnline from '../../components/chatOnline/ChatOnline'
 import Conversation from '../../components/conversation/Conversation'
 import { Conversation as ConversationType } from '../../types/Conversation'
@@ -13,7 +13,9 @@ export default function Messenger() {
   const [conversations, setConversations] = useState<ConversationType[]>([])
   const [currentChat, setCurrentChat] = useState<ConversationType | null>(null)
   const [messages, setMessages] = useState<MessageType[]>([])
+  const [newMessage, setNewMessage] = useState<string>("")
   const {user} = useContext<any>(AuthContext)
+  const scrollRef = useRef<HTMLDivElement>(null)
   
   useEffect(() => {
     const getConversations = async () => {
@@ -40,6 +42,26 @@ export default function Messenger() {
     getMessages()
   }, [currentChat])
 
+  const handleSubmit = async (event: FormEvent) => {
+    event.preventDefault()
+    const message = {
+      sender: user._id,
+      text: newMessage,
+      conversationId: currentChat?._id,
+    }
+    try {
+      const res = await api.post('/messages', message)
+      setMessages([...messages, res.data])
+      setNewMessage('')
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  useEffect(() => {
+    scrollRef?.current?.scrollIntoView({behavior: "smooth"})
+  }, [messages])
+
   return (
     <>
     <Topbar />
@@ -58,12 +80,18 @@ export default function Messenger() {
         <div>{ currentChat ? <>
           <div className="boxTop">
             {messages.map(m => (
-              <Message message={m} own={m.sender === user._id}/>
+              <div ref={scrollRef}>
+                <Message message={m} own={m.sender === user._id}/>
+              </div>
             ))}
           </div>
           <div className="boxBottom">
-            <textarea placeholder='write something ...'></textarea>
-            <button>Send</button>
+            <textarea 
+              placeholder='write something ...'
+              onChange={(e) => setNewMessage(e.target.value)}
+              value={newMessage}
+              ></textarea>
+            <button onClick={handleSubmit}>Send</button>
           </div> </> : <span className='noConversation'>Open a conversation to start a chat</span> }
         </div>
       </div>
