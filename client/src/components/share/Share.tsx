@@ -13,7 +13,7 @@ import { User } from '../../types/User';
 
 export default function Share() {
 
-  const { user } = useContext<any>(AuthContext)
+  const { user } = useContext<User | any>(AuthContext)
   const PF = process.env.REACT_APP_PUBLIC_FOLDER
   const desc = useRef<HTMLInputElement>(null)
   const [file, setFile] = useState<File | null>()
