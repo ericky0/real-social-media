@@ -9,10 +9,11 @@ import { FormEvent, useContext, useRef, useState } from 'react';
 import CancelIcon from '@mui/icons-material/Cancel';
 import { Post } from '../../types/Post';
 import api from '../../services/api';
+import { User } from '../../types/User';
 
 export default function Share() {
 
-  const { user } = useContext(AuthContext)
+  const { user } = useContext<any>(AuthContext)
   const PF = process.env.REACT_APP_PUBLIC_FOLDER
   const desc = useRef<HTMLInputElement>(null)
   const [file, setFile] = useState<File | null>()
@@ -20,7 +21,7 @@ export default function Share() {
   const submitHandler = async (event: FormEvent) => {
     event.preventDefault()
     const newPost: Post = {
-      userId: user._id,
+      userId: user?._id,
       desc: desc.current?.value,
     }
     if(file) {

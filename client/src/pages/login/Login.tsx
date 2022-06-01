@@ -19,7 +19,10 @@ export default function Login() {
 
   const handleClick = (event: FormEvent) => {
     event.preventDefault()
-    loginCall({email: email.current?.value, password: password.current?.value}, dispatch)
+    loginCall(
+      {email: email.current?.value, password: password.current?.value},
+      dispatch
+    )
   }
 
   return (
