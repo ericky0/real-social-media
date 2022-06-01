@@ -3,7 +3,7 @@
 > Status: In Progress, currently adding realtime chat
 <br/>
 <p align="center">
-    RealSocial - <span><b>Connect</b> with <b>friends</b> and the <b>world</b> around you on</span>
+    RealSocial - <span><b>Connect</b> with <b>friends</b> and the <b>world</b> around you</span>
     <br />
     <br />
     <a href="https://github.com/ericky0/real-social-media"><strong>Explore os arquivos »</strong></a>
