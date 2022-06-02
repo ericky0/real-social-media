@@ -34,9 +34,9 @@ function App() {
           : <Register />
         }/>
         <Route path="/messenger" element={
-          !user // there's a user?
-          ? <Navigate to="/" />
-          : <Messenger />
+          user // there's a user?
+          ? <Messenger />
+          : <Navigate to="/" />
         }/>        
         <Route path="/profile/:username" element={<Profile />}/>
       </Routes>

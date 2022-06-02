@@ -3,6 +3,6 @@ export type Message = {
   conversationId?: string
   sender?: string
   text?: string
-  createdAt?: Date
+  createdAt?: Date | number
   updatedAt?: Date
 }
