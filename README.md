@@ -16,6 +16,12 @@
 - is a social network that aims to connect you with your friends and the world, it is perfect for sharing your experiences in the feed, commenting on what is happening in the world and even chatting with your friend.
 <br>
 
+## API 
+
+![image](https://user-images.githubusercontent.com/53923000/171750643-873ff9da-7916-4e48-a2d0-aae29a655b4f.png)
+
+<br/>
+
 ## Pages
 
 ### HOME
@@ -35,7 +41,6 @@
 ### LOGIN
 ![login](https://user-images.githubusercontent.com/53923000/171443853-be2496a5-3fcd-4dfa-af5d-42614f1f45e2.gif)
 <br/>
-
 
 
 
