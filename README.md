@@ -1,6 +1,6 @@
 <h1>RealSocial</h1>
 
-> Status: In Progress, currently adding realtime chat
+> Status: Finished. maybe more features in the future =)
 <br/>
 <p align="center">
     RealSocial - <span><b>Connect</b> with <b>friends</b> and the <b>world</b> around you</span>
