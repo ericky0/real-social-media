@@ -1,5 +1,6 @@
 import { createContext, ReactNode, useEffect, useReducer } from 'react'
 import AuthReducer from './AuthReducer'
+import { User } from '../types/User'
 
 type AuthContextProviderProps = {
   children: ReactNode;
@@ -7,7 +8,7 @@ type AuthContextProviderProps = {
 
 const INITIAL_STATE = {
   //@ts-expect-error
-  user: JSON.parse(localStorage.getItem("user") || null),
+  user: JSON.parse(localStorage.getItem<User>("user") || null),
   isFetching: false,
   error: false
 }

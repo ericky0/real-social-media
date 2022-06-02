@@ -9,6 +9,7 @@ import { AuthContext } from '../../context/AuthContext'
 import './messenger.scss'
 import api from '../../services/api'
 import { io } from 'socket.io-client'
+import { User } from '../../types/User'
 
 export default function Messenger() {
   const [conversations, setConversations] = useState<ConversationType[]>([])
@@ -16,8 +17,10 @@ export default function Messenger() {
   const [messages, setMessages] = useState<MessageType[]>([])
   const [newMessage, setNewMessage] = useState<string>("")
   const [arrivalMessage, setArrivalMessage] = useState<MessageType>()
+  const [onlineUsers, setOnlineUsers] = useState<User[]>([])
   const socket = useRef<any>()
-  const {user} = useContext<any>(AuthContext)
+  const { user } = useContext(AuthContext)
+  // console.log(user)
   const scrollRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -39,7 +42,7 @@ export default function Messenger() {
   useEffect(() => {
     socket.current.emit("addUser", user._id)
     socket.current.on("getUsers", (users: { userId: string; socketId: string }[]) => {
-      console.log(users)
+      setOnlineUsers(user.followings.filter((f: string) => users.some((u) => u.userId === f)))
     })
   }, [user])
   
@@ -132,7 +135,11 @@ export default function Messenger() {
       </div>
       <div className="chatOnline">
         <div>
-          <ChatOnline />
+          <ChatOnline 
+            onlineUsers={onlineUsers} 
+            currentId={user._id} 
+            setCurrentChat={setCurrentChat}
+          />
         </div>
       </div>
     </div>

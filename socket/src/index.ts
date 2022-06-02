@@ -34,6 +34,7 @@ io.on('connection', socket => {
   socket.on('addUser', userId => {
     addUser(userId, socket.id)
     io.emit('getUsers', users)
+    console.log(users)
   })
 
   //send and get message

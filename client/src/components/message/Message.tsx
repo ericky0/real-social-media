@@ -1,6 +1,9 @@
 import { Message as MessageType } from '../../types/Message';
 import { format } from 'timeago.js'
 import './message.scss'
+import { useEffect, useState } from 'react';
+import { User } from '../../types/User';
+import api from '../../services/api';
 
 type MessageProps = {
   own?: boolean;
@@ -8,10 +11,21 @@ type MessageProps = {
 }
 
 export default function Message({own, message}: MessageProps) {
+  const [ user, setUser ] = useState<User>()
+  const PF = process.env.REACT_APP_PUBLIC_FOLDER
+
+  useEffect(() => {
+    const getUser = async () => {
+      const res = await api.get('/users?userid=' + message?.sender)
+      setUser(res.data)
+    }
+    getUser()
+  })
+
   return(
     <div className={own ? "message own" : "message"}>
       <div className="top">
-        <img src="https://images.pexels.com/photos/11855703/pexels-photo-11855703.jpeg?cs=srgb&dl=pexels-roman-polenin-11855703.jpg&fm=jpg" alt="person"/>
+        <img src={user?.profilePicture ? PF! + user?.profilePicture : PF! + 'person/noAvatar.png'} alt="person"/>
         <p> {message?.text} </p>
       </div>
       <div className="bottom">

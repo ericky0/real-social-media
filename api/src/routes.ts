@@ -46,6 +46,10 @@ router.get('/posts/:id', postController.getPost)
 // ------------------- CONVERSATION-CONTROLLER ------------------- /
 router.post('/conversations', conversationController.newConv)
 router.get('/conversations/:userId', conversationController.getConv)
+router.get(
+  '/conversations/:firstUserId/:secondUserId',
+  conversationController.getConvTwoUser
+)
 
 // ------------------- END-CONVERSATION-CONTROLLER ------------------- /
 
