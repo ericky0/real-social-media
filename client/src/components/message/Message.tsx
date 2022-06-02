@@ -20,7 +20,7 @@ export default function Message({own, message}: MessageProps) {
       setUser(res.data)
     }
     getUser()
-  })
+  }, [message?.sender])
 
   return(
     <div className={own ? "message own" : "message"}>
