@@ -14,7 +14,6 @@
 ## About the project 🎨
 
 - is a social network that aims to connect you with your friends and the world, it is perfect for sharing your experiences in the feed, commenting on what is happening in the world and even chatting with your friend.
-<br>
 
 ## API 
 
