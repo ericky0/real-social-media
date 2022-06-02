@@ -48,3 +48,37 @@
 * [Context API](https://pt-br.reactjs.org/docs/context.html)
 * [SASS](https://sass-lang.com/)
 * [Socket.io](https://socket.io/get-started/chat)
+
+
+## How to start the project on your machine
+
+#### Prerequisites
+
+``` Git, Yarn or NPM ```
+
+#### Instalation
+
+```
+# Clone this repository
+$ git clone https://github.com/ericky0/real-social-media
+
+# Install the dependencies for each folder
+$ yarn | npm
+
+Then just create a .env file in api folder and replace the environment variables as in the image below with your MongoDB.
+```
+![image](https://user-images.githubusercontent.com/53923000/171752740-c75590c1-229b-47b6-a2af-a4d1e60c1e39.png)
+
+
+```
+# Start the project
+$ socket folder: yarn dev
+$ api folder: yarn dev
+$ client folder: yarn start
+
+# Finally, the application will be available at `http://localhost:3000`
+```
+
+
+
+
