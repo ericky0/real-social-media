@@ -44,3 +44,4 @@
 * [React](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/)
 * [Context API](https://pt-br.reactjs.org/docs/context.html)
 * [SASS](https://sass-lang.com/)
+* [Socket.io](https://socket.io/get-started/chat)
