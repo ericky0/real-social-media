@@ -15,7 +15,7 @@
 
 - is a social network that aims to connect you with your friends and the world, it is perfect for sharing your experiences in the feed, commenting on what is happening in the world and even chatting with your friend.
 
-## API 
+## API
 
 ![image](https://user-images.githubusercontent.com/53923000/171750643-873ff9da-7916-4e48-a2d0-aae29a655b4f.png)
 
